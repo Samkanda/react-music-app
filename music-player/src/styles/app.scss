@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #212121;
+}
+h3,h4 {
+    font-weight: 400;
+    color: white
+}
+@import "./player";
+@import "./song";
+@import "./library";
