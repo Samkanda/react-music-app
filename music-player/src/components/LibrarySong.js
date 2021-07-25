@@ -1,4 +1,5 @@
 import React from 'react'
+import { playAudio } from './PlayerTracker';
 
 
 const LibrarySong = ({song, setCurrentSong, songs, id, audioRef, setSongs, isPlaying}) => {
@@ -7,14 +8,7 @@ const LibrarySong = ({song, setCurrentSong, songs, id, audioRef, setSongs, isPla
         const selectedSong = songs.filter((state) => state.id === id)
         
         setCurrentSong(selectedSong[0]);
-        const playPromise = audioRef.current.play();
-        if(isPlaying) {
-            if (playPromise !== undefined) {
-                playPromise.then((audio) => {
-                    audioRef.current.play();
-                })
-            }
-        }
+        playAudio(isPlaying, audioRef)
        
         //Add Activie State
         const newSongs = songs.map((song) => {
