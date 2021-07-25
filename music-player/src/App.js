@@ -1,10 +1,11 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useContext} from "react";
 import "./styles/app.scss"
 import Player from './components/Player';
 import Song from './components/Song';
 import data from './util'
 import Library from './components/Library'
 import Nav from "./components/Nav";
+
 
 function App() {
   //State
@@ -26,6 +27,7 @@ const [songInfo, setSongInfo] = useState({
   duration: 0
 })
   return (
+
     <div className="App">
       <Nav libraryStatus ={libraryStatus} setLibraryStatus={setLibraryStatus}/>
       <Song currentSong={currentSong}/>
