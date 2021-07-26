@@ -13,7 +13,7 @@ const LibrarySong = ({song, id}) => {
     
     return (
         <div onClick={songSelectHandler} className={`library-song ${song.id === currentSong.id  ? 'selected': ""}`}>
-            <img alt={""}src={song.cover}></img>
+            <img alt={""} src={song.cover} ></img>
             <div className="song-description">
                 <h2>{song.name}</h2>
                 <h3>{song.artist}</h3>

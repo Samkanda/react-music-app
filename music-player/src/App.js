@@ -32,7 +32,7 @@ function App() {
       <Nav libraryStatus ={libraryStatus} setLibraryStatus={setLibraryStatus}/>
       <Song currentSong={currentSong}/>
       <Player />
-      <Library libraryStatus={libraryStatus}/>
+      <Library libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus}/>
       <audio onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} ref= {audioRef} src = {currentSong.audio}></audio>
     </div>
     </MusicContext.Provider>

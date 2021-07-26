@@ -16,6 +16,26 @@
 }
 .library-title{
     background-color: #272727;
+    button{
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        border: 2px solid whitesmoke;
+        padding: 0.5rem;
+        margin-left: 7rem;
+        transition: all 0.3s ease;
+        color: whitesmoke;
+        opacity: 0;
+        &:hover {
+            background: rgba(250, 127, 244, 0.698);
+            color: white;
+        }
+    }
+    @media all and (max-width: 500px) {
+        button {
+          opacity: 1;
+        }
+      }
 }
 
 .library-song {
@@ -48,7 +68,6 @@
 
 *::-webkit-scrollbar{
     width: 10px;
-    //background-color: red;
 }
 
 *::-webkit-scrollbar-track{
@@ -86,3 +105,4 @@ input {
 ::placeholder{
     color: pink;
 }
+
