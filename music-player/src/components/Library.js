@@ -1,25 +1,29 @@
-import React from 'react';
+import React, {useContext, useState} from 'react' 
 import LibrarySong from './LibrarySong';
+import { MusicContext } from './MusicContext'
 
-
-const Library = ({songs, setCurrentSong, audioRef, isPlaying, setSongs, libraryStatus}) => {
+const Library = ({libraryStatus}) => {
+    const [searchTerm, setSearchTerm] = useState('')
+    const {songs} = useContext(MusicContext)
     return(
         <div className={`library ${libraryStatus ? 'active-library' : ''}`}>
             <h2 className="library-title">Library</h2>
+            <input type="text" id="header-search" placeholder="Search..." onChange={(e) => {setSearchTerm(e.target.value)}} />
             <div className="library-songs">
-                {songs.map(song => ( 
+                {songs.filter((song) => {
+                    if (searchTerm == "") {
+                        return song
+                    } else if (song.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                    {
+                        return song
+                    }
+                }).map(song => ( 
                     <LibrarySong 
-                        songs = {songs} 
                         song={song} 
-                        setCurrentSong={setCurrentSong}
                         id={song.id}
-                        key={song.id}
-                        audioRef = {audioRef}
-                        isPlaying={isPlaying}
-                        setSongs={setSongs}    
+                        key={song.id} 
                     />
                 ))}
-            
             </div>
         </div>
     )

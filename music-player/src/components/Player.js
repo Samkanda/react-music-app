@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react'
+import React, {useContext} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlay, faAngleLeft, faAngleRight, faPause} from "@fortawesome/free-solid-svg-icons"
 import { playAudio } from './PlayerTracker'
+import { MusicContext } from './MusicContext'
 
-const Player = ({setCurrentSong, currentSong, isPlaying, setIsPlaying, audioRef, songInfo, setSongInfo, songs, setSongs}) => {
-
+const Player = () => {
+    const {isPlaying, setIsPlaying, setCurrentSong, currentSong, audioRef, songInfo, setSongInfo, songs} = useContext(MusicContext)
     const playSongHandler = () => {
         if (isPlaying) {
             audioRef.current.pause();
@@ -15,23 +16,6 @@ const Player = ({setCurrentSong, currentSong, isPlaying, setIsPlaying, audioRef,
         } 
     }
     
-    useEffect(() => {
-        const newSongs = songs.map((song) => {
-            if(song.id === currentSong.id) {
-                return{
-                    ...song,
-                    active: true,
-                }
-            }else {
-                return{
-                    ...song,
-                    active: false,
-                };
-            }
-        })
-        setSongs(newSongs)
-    }, [currentSong])
-
     const getTime = (time) => {
         return (
             Math.floor(time/60) + ":" + ("0" + Math.floor(time%60)).slice(-2)
@@ -48,21 +32,17 @@ const Player = ({setCurrentSong, currentSong, isPlaying, setIsPlaying, audioRef,
         if (direction === "skip-forward") {
             if(currentIndex < songs.length - 1) {
                 setCurrentSong(songs[(currentIndex + 1)])
-                console.log(currentIndex)
             }
             else{
                 setCurrentSong(songs[0])
-                console.log(currentIndex)
             }
         }
         if (direction === "skip-back") {
             if(currentIndex > 0) {
                 setCurrentSong(songs[(currentIndex - 1)])
-                console.log(currentIndex)
             }
             else{
                 setCurrentSong(songs[(songs.length - 1)])
-                console.log(currentIndex)
             }
         }playAudio(isPlaying, audioRef);
     }
